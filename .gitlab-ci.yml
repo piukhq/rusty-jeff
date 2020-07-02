@@ -7,7 +7,7 @@ build:
   script:
     - apt update
     - apt install -y curl
-    - curl -s https://static.rust-lang.org/rustup.sh | sh -s -- --channel=nightly
+    - curl https://sh.rustup.rs -sSf | sh -s -- --channel=nightly
     - pip install maturin twine
     - maturin build
     - twine check dist/*
