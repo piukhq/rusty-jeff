@@ -9,7 +9,7 @@ build:
     - apt install -y curl
     - curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y
     - pip install maturin twine
-    - maturin build
+    - PATH=~/.cargo/bin:$PATH maturin build
     - twine check dist/*
     - twine upload --non-interactive --disable-progress-bar --repository-url https://pypi.tools.bink.sh/simple/ dist/*
   only:
