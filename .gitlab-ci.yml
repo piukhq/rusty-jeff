@@ -6,7 +6,7 @@ build:
   image: binkhq/python:3.8
   script:
     - apt update
-    - apt install -y curl gcc libssl-dev pkg-config
+    - DEBIAN_FRONTEND=noninteractive apt install -y curl gcc libssl-dev pkg-config
     - curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y
     - pip install maturin twine
     - PATH=~/.cargo/bin:$PATH maturin build
