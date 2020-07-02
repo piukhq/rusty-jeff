@@ -7,8 +7,8 @@ build:
   script:
     - apt update
     - apt install -y curl
-    - curl -sSL https://static.rust-lang.org/rustup/dist/x86_64-unknown-linux-gnu/rustup-init
-    - ./rustup-init --channel=nightly
+    - curl -sSLo rustup https://static.rust-lang.org/rustup/dist/x86_64-unknown-linux-gnu/rustup-init
+    - ./rustup --channel=nightly
     - pip install maturin twine
     - maturin build
     - twine check dist/*
