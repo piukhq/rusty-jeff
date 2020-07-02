@@ -1,0 +1,13 @@
+stages:
+  - build
+
+build:
+  stage: build
+  image: binkhq/python:3.8
+  script:
+    - pip install maturin twine
+    - maturin build
+    - twine check dist/*
+    - twine upload --non-interactive --disable-progress-bar --repository-url https://pypi.tools.bink.sh/simple/ dist/*
+  only:
+    - tags
