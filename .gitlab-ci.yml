@@ -10,4 +10,4 @@ build:
     - twine check dist/*
     - twine upload --non-interactive --disable-progress-bar --repository-url https://pypi.tools.bink.sh/simple/ dist/*
   only:
-    - tags
+    - master
