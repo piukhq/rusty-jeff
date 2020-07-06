@@ -1,6 +1,6 @@
 [package]
 name = "rusty-jeff"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Kashim Aziz <kaziz@bink.com>", "Chris Latham <cl@bink.com>"]
 edition = "2018"
 readme = "README.md"
