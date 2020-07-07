@@ -8,7 +8,7 @@ build:
     - apt update
     - DEBIAN_FRONTEND=noninteractive apt install -y curl gcc libssl-dev pkg-config
     - curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y
-    - pip install maturin
+    - pip install maturin cffi
     - PATH=~/.cargo/bin:$PATH maturin publish --bindings cffi --manylinux off --out dist --repository-url https://pypi.tools.bink.sh/simple/ --username 269fdc63-af3d-4eca-8101-8bddc22d6f14 --password b694b5b1-f97e-49e4-959e-f3c202e3ab91
   only:
     - master
