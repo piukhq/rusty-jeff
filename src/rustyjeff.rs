@@ -26,9 +26,9 @@ pub fn rsa_decrypt_base64(
                     priv_key
                         .private_decrypt(&value, &mut decrypted_data, Padding::PKCS1_OAEP)
                         .map_err(|_| "failed to decrypt text")
-                        .and_then(|size| {
-                            Ok(String::from_utf8_lossy(&decrypted_data[0..size]).into_owned())
-                        })
+                        .map(|size| 
+                            String::from_utf8_lossy(&decrypted_data[0..size]).into_owned()
+                        )
                 })
         })
         .collect()
