@@ -1,12 +1,31 @@
 stages:
   - build
 
-build:
+build-3.6:
+  stage: build
+  image: binkhq/python:3.6-pyo3
+  script:
+    - maturin build --no-sdist --release --manylinux off --out dist
+    - twine check dist/*
+    - twine upload --non-interactive --disable-progress-bar --repository-url https://pypi.tools.bink.sh/simple/ dist/*
+  only:
+    - master
+
+build-3.7:
+  stage: build
+  image: binkhq/python:3.7-pyo3
+  script:
+    - maturin build --no-sdist --release --manylinux off --out dist
+    - twine check dist/*
+    - twine upload --non-interactive --disable-progress-bar --repository-url https://pypi.tools.bink.sh/simple/ dist/*
+  only:
+    - master
+
+build-3.8:
   stage: build
   image: binkhq/python:3.8-pyo3
   script:
-    - apt update
-    - maturin build --release --bindings cffi --manylinux off --out dist
+    - maturin build --no-sdist --release --manylinux off --out dist
     - twine check dist/*
     - twine upload --non-interactive --disable-progress-bar --repository-url https://pypi.tools.bink.sh/simple/ dist/*
   only:
