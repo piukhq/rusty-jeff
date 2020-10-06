@@ -30,3 +30,14 @@ build-3.8:
     - twine upload --non-interactive --disable-progress-bar --repository-url https://pypi.tools.bink.sh/simple/ dist/*
   only:
     - master
+
+
+build-3.9:
+  stage: build
+  image: binkhq/python:3.9-pyo3
+  script:
+    - maturin build --no-sdist --release --manylinux off --out dist
+    - twine check dist/*
+    - twine upload --non-interactive --disable-progress-bar --repository-url https://pypi.tools.bink.sh/simple/ dist/*
+  only:
+    - master
