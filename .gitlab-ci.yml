@@ -31,7 +31,6 @@ build-3.8:
   only:
     - master
 
-
 build-3.9:
   stage: build
   image: binkhq/python:3.9-pyo3
