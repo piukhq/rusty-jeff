@@ -6,7 +6,7 @@ build-3.7:
   image: ghcr.io/binkhq/python:3.7-pyo3
   script:
     - maturin build --no-sdist --release --manylinux off --out dist
-    - maturin upload -u gitlab-ci-token -p ${CI_JOB_TOKEN} -r https://git.bink.com/api/v4/projects/${CI_PROJECT_ID}/packages/pypi dist/*
+    - maturin upload --skip-existing -u gitlab-ci-token -p ${CI_JOB_TOKEN} -r https://git.bink.com/api/v4/projects/${CI_PROJECT_ID}/packages/pypi dist/*
   only:
     - master
 
@@ -15,7 +15,7 @@ build-3.8:
   image: ghcr.io/binkhq/python:3.8-pyo3
   script:
     - maturin build --no-sdist --release --manylinux off --out dist
-    - maturin upload -u gitlab-ci-token -p ${CI_JOB_TOKEN} -r https://git.bink.com/api/v4/projects/${CI_PROJECT_ID}/packages/pypi dist/*
+    - maturin upload --skip-existing -u gitlab-ci-token -p ${CI_JOB_TOKEN} -r https://git.bink.com/api/v4/projects/${CI_PROJECT_ID}/packages/pypi dist/*
   only:
     - master
 
@@ -24,6 +24,6 @@ build-3.9:
   image: ghcr.io/binkhq/python:3.9-pyo3
   script:
     - maturin build --no-sdist --release --manylinux off --out dist
-    - maturin upload -u gitlab-ci-token -p ${CI_JOB_TOKEN} -r https://git.bink.com/api/v4/projects/${CI_PROJECT_ID}/packages/pypi dist/*
+    - maturin upload --skip-existing -u gitlab-ci-token -p ${CI_JOB_TOKEN} -r https://git.bink.com/api/v4/projects/${CI_PROJECT_ID}/packages/pypi dist/*
   only:
     - master
