@@ -1,5 +1,5 @@
 [package]
-name = "rusty-jeff"
+name = "rustyjeff"
 version = "0.1.2"
 authors = ["Kashim Aziz <kaziz@bink.com>", "Chris Latham <cl@bink.com>"]
 edition = "2018"
