@@ -1,31 +1,27 @@
-# name: ci
+name: ci
 
-# on:
-#   push:
-#     branches: [ master ]
-#   pull_request:
-#     branches: [ master ]
-#   release:
-#     types: [ published ]
+on:
+  push:
+    tags: ['v[0-9]+.[0-9]+.[0-9]+']
+  pull_request:
+    branches: [master]
 
-# jobs:
-#   build:
-#     name: build
-#     strategy:
-#       fail-fast: false
-#       matrix:
-#         python-version: [3.9, 3.8, 3.7]
-#         os: [ubuntu-latest, macos-latest]
-#     runs-on: ${{ matrix.os }}
-#     steps:
-#       - uses: actions/checkout@v2
-#       - uses: actions/setup-python@v2
-#         with:
-#           python-version: ${{ matrix.python-version }}
-#       - uses: actions-rs/toolchain@v1
-#         with:
-#           toolchain: stable
-#           override: true
-#       - run: pip install maturin
-#       - run: maturin build --no-sdist --release --manylinux off --out dist
-#       - run: maturin upload --skip-existing -u c02bed7a-4224-4fb4-82ad-17499e4d0e4a -p ${{ secrets.PYPICLOUD_PASSWORD }} -r https://pypi.uksouth.bink.sh/simple dist/*
+jobs:
+  build:
+    name: build
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [3.9, 3.10, 3.11, 3.12]
+        os: [ubuntu-latest, macos-latest-large, macos-latest-xlarge]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          toolchain: stable
+      - run: pip install maturin
+      - run: make publish
